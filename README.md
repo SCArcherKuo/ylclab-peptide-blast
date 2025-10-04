@@ -22,7 +22,6 @@ nextflow run main.nf -profile docker
 ```
 ├── main.nf                   # Main workflow entry point
 ├── nextflow.config           # Configuration and parameters
-├── EXAMPLE_USAGE.md          # Detailed usage examples
 ├── assets/                   # Input data directory
 │   ├── blast_peptide_db/     # Database FASTA files
 │   └── blast_query_peptide/  # Query FASTA files
@@ -51,6 +50,19 @@ The workflow processes multiple peptide query files against multi-species databa
 - **Parallel BLAST Search**: Efficient protein sequence similarity search
 - **Statistical Analysis**: R-based filtering and conservation analysis
 - **Results Merging**: Combines and processes results from multiple files
+
+## Installation and Setup
+
+### Prerequisites
+
+1. **Nextflow**: Nextflow (pretested on version 25.04.7)
+
+2. **Container Engine**: Docker
+
+### Data Preparation
+
+1. **Query Files**: Place your peptide sequence files in FASTA format (*.fasta) in `assets/blast_query_peptide/`
+2. **Database Files**: Place your peptide database files in FASTA format (*.fasta) in `assets/blast_peptide_db/`
 
 ## Usage
 
@@ -100,7 +112,7 @@ nextflow run main.nf -profile docker
 #### Test Profile
 Runs with small test datasets for validation:
 ```bash
-nextflow run main.nf -profile test
+nextflow run main.nf -profile test,docker
 ```
 
 ## Workflow Steps
@@ -135,7 +147,7 @@ The workflow consists of the following main steps:
 
 The workflow uses the following Docker containers:
 
-- **`nextflow-biopython`**: Homemade image for database preparation and sequence processing
+- **`archerkuo/nextflow-biopython:1.0.0`**: Homemade image for database preparation and sequence processing
 - **`ncbi/blast:2.17.0`**: BLAST database creation and protein sequence searching
 - **`rocker/tidyverse:4.5.1`**: R-based statistical analysis and data processing
 
@@ -165,16 +177,3 @@ results/
     ├── trace.txt
     └── dag.dot
 ```
-
-## Installation and Setup
-
-### Prerequisites
-
-1. **Nextflow**: Nextflow (pretested on version 25.04.7)
-
-2. **Container Engine**: Docker
-
-### Data Preparation
-
-1. **Query Files**: Place your peptide sequence files in FASTA format (*.fasta) in `assets/blast_query_peptide/`
-2. **Database Files**: Place your peptide database files in FASTA format (*.fasta) in `assets/blast_peptide_db/`
