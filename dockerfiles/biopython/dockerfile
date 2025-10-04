@@ -1,0 +1,25 @@
+FROM python:3.14.0rc3-slim-trixie AS builder
+
+# Install build dependencies
+RUN apt-get update && \
+    apt-get install -y build-essential && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install biopython
+RUN pip install --user biopython
+
+# Final stage
+FROM python:3.14.0rc3-slim-trixie
+
+# Install only runtime dependencies
+RUN apt-get update && \
+    apt-get install -y procps && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy installed packages from builder
+COPY --from=builder /root/.local /root/.local
+
+# Add local bin to PATH
+ENV PATH=/root/.local/bin:$PATH
+
+CMD ["python3"]
