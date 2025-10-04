@@ -178,11 +178,3 @@ results/
 
 1. **Query Files**: Place your peptide sequence files in FASTA format (*.fasta) in `assets/blast_query_peptide/`
 2. **Database Files**: Place your peptide database files in FASTA format (*.fasta) in `assets/blast_peptide_db/`
-
-### Validation
-
-Validate your workflow setup:
-```bash
-chmod +x validate_workflow.sh
-./validate_workflow.sh
-```
