@@ -9,7 +9,7 @@ include { PREPARE_DATABASE_FASTA; CREATE_BLAST_DATABASE } from '../modules/datab
 include { BLAST_SEARCH } from '../modules/blast'
 include { ANALYZE_BLAST_RESULTS; MERGE_MULTIPLE_RESULTS } from '../modules/analysis'
 
-workflow MULTIPLE_FILES {
+workflow FIND_PEPTIDE_MATCHES {
     main:
     /*
      * Workflow for processing multiple separate files and merging results

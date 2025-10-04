@@ -14,7 +14,7 @@
 nextflow.enable.dsl = 2
 
 // Import workflows
-include { MULTIPLE_FILES } from './workflows/main'
+include { FIND_PEPTIDE_MATCHES } from './workflows/main'
 
 // Help message
 def helpMessage() {
@@ -61,7 +61,7 @@ workflow {
         helpMessage()
         exit 0
     }
-    MULTIPLE_FILES()
+    FIND_PEPTIDE_MATCHES()
 }
 
 
